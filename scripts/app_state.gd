@@ -3,6 +3,7 @@ extends Node
 signal changed
 
 var data: Dictionary = {}
+var persistence_enabled := not OS.has_environment("DTR_TEST_MODE")
 
 func _ready() -> void:
 	load_data()
@@ -48,6 +49,9 @@ func load_data() -> void:
 	roll_daily()
 
 func save() -> void:
+	if not persistence_enabled:
+		changed.emit()
+		return
 	var file := FileAccess.open(GameConfig.SAVE_PATH, FileAccess.WRITE)
 	if file == null:
 		push_error("Could not save game: %s" % FileAccess.get_open_error())
