@@ -23,7 +23,7 @@ Godot 4.x, GDScript, Android export, and a planned Google Play release. The proj
 
 ## Project Structure
 
-- `project.godot`, `scenes/`: project setup and entry scene
+- `project.godot`, `scenes/`, `assets/`: project setup, entry scene, and original app icon
 - `scripts/main.gd`: screens, run loop, scoring, power-up use, and navigation
 - `scripts/orb.gd`: tappable orb and expiration timer
 - `scripts/app_state.gd`: saves, economy, missions, statistics, and local leaderboard
@@ -45,7 +45,7 @@ Headless check: `godot --headless --path . --editor --quit` then `godot --headle
 
 Install the matching Godot export templates, OpenJDK 17, Android SDK, and Godot Android build template. Configure Java SDK Path and Android SDK Path in Editor Settings. Use **Project → Export → Android** for a debug APK. For a release AAB, create a private release keystore, choose the AAB export format, enter signing details, turn off **Export With Debug**, and save as `build/Don'tTouchRed-release.aab`. The package currently uses the placeholder `com.example.donttouchred`; replace it before publishing. See [Android build instructions](docs/ANDROID_BUILD.md).
 
-No APK or AAB has been generated or submitted as part of the source tree.
+A local debug APK can be exported to `build/Don'tTouchRed-debug.apk`; generated binaries remain ignored by Git. No release AAB has been generated or submitted.
 
 ## Development
 

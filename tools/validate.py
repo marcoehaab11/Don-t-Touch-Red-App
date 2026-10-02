@@ -37,9 +37,15 @@ for pattern in (".godot/", "*.keystore", "*.jks", "*.aab", "*.apk"):
     if pattern not in ignore:
         errors.append(f".gitignore lacks {pattern}")
 for file in ROOT.rglob("*"):
-    if file.is_file() and ".git" not in file.parts and ".godot" not in file.parts:
+    relative = file.relative_to(ROOT)
+    ignored_generated = (
+        any(part in {".git", ".godot"} for part in relative.parts)
+        or relative.parts[0] == "build"
+        or relative.parts[:2] == ("android", "build")
+    )
+    if file.is_file() and not ignored_generated:
         if file.suffix.lower() in {".keystore", ".jks", ".p12", ".pem", ".key", ".apk", ".aab"}:
-            errors.append(f"Sensitive or generated file found: {file.relative_to(ROOT)}")
+            errors.append(f"Sensitive or generated file found: {relative}")
 for error in errors:
     print("ERROR:", error)
 print(f"Validation: {'failed' if errors else 'passed'} ({len(errors)} error(s))")

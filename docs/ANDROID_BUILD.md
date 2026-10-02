@@ -1,6 +1,6 @@
 # Android Build
 
-This repository includes an Android export preset, but no signing identity or generated binary. Validate on a real Android device before release.
+This repository includes an Android export preset and an original app icon. Generated binaries stay in the ignored `build/` directory. Validate on a real Android device before release.
 
 1. Install Godot 4.7.2 and its matching Android export templates.
 2. Install OpenJDK 17 and the Android SDK packages required by [Godot's Android export guide](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html).
